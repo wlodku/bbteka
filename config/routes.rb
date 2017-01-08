@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   # get 'dashboard/index'
   root 'dashboard#index'
   namespace :api do
-    resources :books, only: [:index, :create] do
-      get :search, on: :collection
+    namespace :v1 do
+      resources :books, only: [:index, :create] do
+        get :search, on: :collection
+      end
     end
   end
 
