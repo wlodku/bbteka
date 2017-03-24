@@ -9,8 +9,10 @@ var BookTable = React.createClass({
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className="col-md-6">Title</th>
-            <th className="col-md-6">ISBN</th>
+            <th className="">Title</th>
+            <th className="">ISBN</th>
+            <th className="">Statut</th>
+            <th className=""></th>
           </tr>
         </thead>
         <tbody>

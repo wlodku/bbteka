@@ -1,9 +1,12 @@
-var BookApplication = React.createClass({
+var Main = React.createClass({
   getInitialState: function() {
     return { books: [] };
   },
   componentDidMount: function() {
-    this.getDataFromApi();
+    // this.getDataFromApi();
+    //  $.getJSON('/api/v1/books', (response) => { this.setState({ books: response }) });
+     return { books: [] };
+
   },
   getDataFromApi: function() {
     var self = this;

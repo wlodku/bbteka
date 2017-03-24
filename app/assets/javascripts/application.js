@@ -12,8 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 // require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
+
+$(document).ready(function(){
+   $('.dropdown-toggle').dropdown();
+  // alert('qwe');
+});

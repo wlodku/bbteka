@@ -6,7 +6,7 @@ var SearchForm = React.createClass({
       url: '/api/v1/books/search',
       data: { query: query },
       success: function(data) {
-        self.props.handleSearch(data);
+        self.props.handleSearch(query == '' ? [] : data);
       },
       error: function(xhr, status, error) {
         alert('Search error: ', status, xhr, error);

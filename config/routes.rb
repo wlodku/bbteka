@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   # get 'dashboard/index'
   root 'dashboard#index'
   namespace :api do
     namespace :v1 do
-      resources :books, only: [:index, :create] do
+      resources :books, only: [:index, :create, :destroy, :update] do
         get :search, on: :collection
       end
     end
