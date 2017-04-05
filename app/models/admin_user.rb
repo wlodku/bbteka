@@ -1,10 +1,6 @@
-class User < ApplicationRecord
+class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
-
-   has_many :loans
-   has_many :books, through: :loans
-   belongs_to :grade, optional: true
 end

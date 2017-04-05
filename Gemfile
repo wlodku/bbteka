@@ -40,6 +40,15 @@ gem 'react-rails'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'faker', '~> 1.7', '>= 1.7.3'
 gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin', '~> 1.0.0.pre4'
+# Plus integrations with:
+gem 'cancan' # or cancancan
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'pundit'
+
+gem 'filterrific'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -12,3 +12,4 @@
   book.isbn = Faker::Crypto.md5
   book.save
 end
+AdminUser.create!(email: 'wlodku@gmail.com', password: 'mamamama', password_confirmation: 'mamamama')
