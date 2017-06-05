@@ -1,0 +1,3 @@
+console.log('UNSEJW in Registrations');
+$("#error-explanation").remove();
+$(".modal-body").prepend("<%= escape_javascript(render partial: 'errors', locals: { user: @user } ) %>");

@@ -17,9 +17,44 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require filterrific/filterrific-jquery
 //= require_tree .
 
 $(document).ready(function(){
    $('.dropdown-toggle').dropdown();
-  // alert('qwe');
+
+});
+
+//New/edit user form begin
+
+$(document).on("click", ".generate-pass", function(){
+  $('.pass').attr('type', 'text');
+  var randomstring = Math.random().toString(36).slice(-8);
+  $('.pass').val(randomstring);
+  $('.show-pass').html('Ukryj');
+});
+
+$(document).on("click", ".reset-pass", function(){
+  $('.pass').attr("disabled", false);
+  var randomstring = Math.random().toString(36).slice(-8);
+  $('.pass').val(randomstring);
+  $('.confirm-pass').val($('.pass').val());
+
+});
+
+$(document).on("keyup", ".new-pass", function(){
+  console.log('dziaua');
+  $('.confirm-pass').val($('.new-pass').val());
+
+});
+
+$(document).on("click", ".show-pass", function(){
+  if( $(this).html()=='Pokaż') {
+    $(this).html('Ukryj');
+    $('.pass').attr('type', 'text');
+  }
+  else {
+    $(this).html('Pokaż');
+    $('.pass').attr('type', 'password');
+  }
 });

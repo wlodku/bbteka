@@ -1,0 +1,4 @@
+ $("#<%= @user.id %>").replaceWith("<%= escape_javascript(render partial: 'user', locals: { user: @user } ) %>");
+ $(".alert").remove();
+ $("#info").html('<div class="alert alert-success">Zapisano pomyślnie</div>');
+ $("#user-modal").modal("hide");

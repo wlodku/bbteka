@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'react-rails'
 gem 'devise', '~> 4.2', '>= 4.2.1'
+gem 'devise-i18n'
+gem 'devise_account_expireable'
 gem 'faker', '~> 1.7', '>= 1.7.3'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
@@ -48,7 +50,18 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'pundit'
 
-gem 'filterrific'
+gem 'searchkick', '~> 2.2'
+gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+gem 'will_paginate-bootstrap', '~> 1.0.1'
+gem 'will-paginate-i18n', '~> 0.1.15'
+gem 'barby', '~> 0.6.5'
+gem 'chunky_png', '~> 1.3', '>= 1.3.5'
+gem 'prawn', '~> 2.2', '>= 2.2.2'
+gem 'prawn-table'
+gem 'prawnto', '~> 0.0.1'
+gem 'filterrific', '~> 2.1', '>= 2.1.2'
+gem 'activerecord-import', '~> 0.18.3'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -59,12 +72,15 @@ group :development, :test do
 end
 
 group :development do
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # += RailsPanel in Chrome xD
+  gem 'meta_request'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

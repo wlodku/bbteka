@@ -1,0 +1,32 @@
+<%= form_tag import_create_path do %>
+<% @new.each_with_index do |user, i| %>
+    <%= fields_for 'users[]', user do |u| %>
+
+    <div class="field">
+      <%= u.label :login %><br>
+      <%= u.text_field :login, value: @students[i]['imie'][0..3]+@students[i]['nazwisko'][0..3] %>
+    </div>
+      <div class="field">
+        <%= u.label :name %><br>
+        <%= u.text_field :name, value: @students[i]['imie'] %>
+      </div>
+      <div class="field">
+        <%= u.label :surname %><br>
+        <%= u.text_field :surname, value: @students[i]['nazwisko'] %>
+      </div>
+      <div class="field">
+        <%= u.label :password %><br>
+        <%= u.text_field :password, value: "mamamama" %>
+      </div>
+
+      <div class="field">
+        <%= u.label :password_confirmation %><br>
+        <%= u.text_field :password_confirmation, value: "mamamama" %>
+      </div>
+    <% end %>
+    <hr>
+  <% end %>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

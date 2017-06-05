@@ -1,5 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  before_action :check_changed_pass, if: :user_signed_in?
 
   # GET /loans
   # GET /loans.json
@@ -70,5 +71,9 @@ class LoansController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params
       params.fetch(:loan, {})
+    end
+
+    def check_changed_pass
+      redirect_to edit_user_registration_path, alert: "Logujesz się po raz pierwszy lub Twoje hasło zostało zresetowane. Proszę zmienić hasło." if current_user.force_change_pass
     end
 end

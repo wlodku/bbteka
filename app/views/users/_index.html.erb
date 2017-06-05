@@ -1,0 +1,50 @@
+
+
+<div id="filterrific_results">
+
+  <div class="well well-small">
+    <div class="pull-right" data-intro="Reset the filter settings to defaults." data-position="bottom">
+      <%= link_to "Usuń filtry", reset_filterrific_url, :class => 'btn btn-default btn-sm' %>
+    </div>
+
+    <div class="chardin_box" data-intro="will_paginate's entries info works as expected." data-position="bottom">
+      <%= page_entries_info users, :model => '' %>
+    </div>
+    <%= link_to "Wygeneruj karteczki z danymi wyświetlonych", users_path(format: :pdf, barcode: false) %><br>
+    <%= link_to "Wygeneruj karty wyświetlonych czytelników", users_path(format: :pdf, barcode: true) %>
+    <div class="chardin_box" data-intro="Spinner indicates update." data-position="bottom">
+      <%= render_filterrific_spinner %>
+    </div>
+  </div>
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody class="user-index">
+
+    <tr class="info text-center reka">
+      <th><b>Login</b></th>
+      <th><b>Imię</b></th>
+      <th><b>Nazwisko</b></th>
+      <th><b>Klasa</b></th>
+      <th><b>Bieżące wypożyczenia</b></th>
+      <th><b>Czytelnictwo</b></th>
+      <th><b></b></th>
+
+    </tr>
+    <% users.each do |user| %>
+
+        <%= render 'user', user: user %>
+
+    <% end %>
+
+  </tbody>
+</table>
+<%= will_paginate users, previous_label: 'Poprzednie', next_label: 'Następne', renderer: BootstrapPagination::Rails, class: 'pagination-sm' %>
+</div>

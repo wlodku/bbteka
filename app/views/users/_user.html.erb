@@ -1,0 +1,13 @@
+<tr id="<%= user.id %>">
+  <td><%= user.login unless user.login.nil? %></td>
+  <td><%= user.name %></td>
+  <td><%= user.surname %></td>
+  <td><%= user.grade.name unless user.grade.nil? %></td>
+  <td><%= user.loans.count %></td>
+  <td><%= link_to 'Pokaż',  edit_user_path(user), remote: true %></td>
+  <td>
+    <!-- <% link_to 'Pobierz PDF', user_path(user, format: 'pdf')%> -->
+    <%= link_to 'Edytuj użytkownika',  edit_user_path(user), remote: true %>
+    <!-- <% link_to 'Usuń', user, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego użytkownika?' } %> -->
+  </td>
+</tr>

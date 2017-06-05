@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_changed_pass, if: :user_signed_in?
 
   # GET /books
   # GET /books.json
@@ -89,5 +90,9 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.fetch(:book, {}).permit(:isbn, :title, author_attributes: [:name, :surname])
+    end
+
+    def check_changed_pass
+      redirect_to edit_user_registration_path, alert: "Logujesz się po raz pierwszy lub Twoje hasło zostało zresetowane. Proszę zmienić hasło." if current_user.force_change_pass
     end
 end

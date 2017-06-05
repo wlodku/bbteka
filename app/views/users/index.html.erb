@@ -1,0 +1,52 @@
+<p id="info"></p>
+
+<h2>Użytkownicy</h2>
+<div class="text-right">
+    <!-- <% link_to "<span class='glyphicon glyphicon-print' aria-hidden='true'></span> Wygeneruj karty".html_safe, '#', :class => 'btn btn-primary btn-md' %> -->
+    <%= link_to new_user_path, class: "btn btn-success btn-md ", remote: true do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Dodaj użytkownika
+    <% end %>
+</div>
+<br>
+<div class="jumbotron">
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+
+
+        <div class="col-md-3">
+            Nazwisko/imię<br>
+            <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+            <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed form-control'
+    ) %>
+        </div>
+        <div class="col-md-3">
+            Klasa<br>
+            <%= f.select(:with_grade_id, @filterrific.select_options[:with_grade_id],{ include_blank: '- Wszystkie -' }, class: 'form-control') %>
+        </div>
+        <div class="col-md-3">
+            Registered after
+            <%= f.text_field(:with_created_at_gte, class: 'js-datepicker form-control') %>
+        </div>
+        <div class="col-md-3">
+            Sortuj według
+            <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {}, class: 'form-control') %>
+        </div>
+        <% end %>
+    </div>
+    <!-- <%= link_to "<span class='glyphicon glyphicon-print' aria-hidden='true'></span> Wygeneruj karty czytelników dla wyświetlonych użytkowników".html_safe, reset_filterrific_url %> -->
+
+</div>
+
+<%= render(
+  partial: 'index',
+  locals: { users: @users }
+) %>
+
+
+<div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<br>
+
+<div></div>

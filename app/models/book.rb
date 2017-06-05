@@ -9,4 +9,5 @@ class Book < ApplicationRecord
   belongs_to :publisher, optional: true
 
   # validates :isbn, presence: true
+  searchkick
 end
