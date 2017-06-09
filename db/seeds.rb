@@ -13,6 +13,7 @@
 #   book.save
 # end
 AdminUser.create!(email: 'wlodku@post.pl', login: 'wlodku', password: 'mamamama', password_confirmation: 'mamamama')
+# User.create!(email: 'wlodku@gmail.com', login: 'wlodku', role: 'Administrator', password: 'tatatata', password_confirmation: 'tatatata')
 
 grades = []
 grades << Grade.new(name: 'IIa TE');

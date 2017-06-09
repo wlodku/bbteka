@@ -1,32 +1,47 @@
 <%= form_tag import_create_path do %>
+
+
+<div class="container">
+  <div class="form-group row">
+    <div class="col-md-3 text-center"><strong>Login</strong></div>
+    <div class="col-md-3 text-center"><strong>Imię</strong></div>
+    <div class="col-md-3 text-center"><strong>Nazwisko</strong></div>
+    <div class="col-md-3 text-center"><strong>Klasa</strong></div>
+  </div>
+
 <% @new.each_with_index do |user, i| %>
+  <div class="form-group row">
+
+
     <%= fields_for 'users[]', user do |u| %>
 
-    <div class="field">
-      <%= u.label :login %><br>
-      <%= u.text_field :login, value: @students[i]['imie'][0..3]+@students[i]['nazwisko'][0..3] %>
-    </div>
-      <div class="field">
-        <%= u.label :name %><br>
-        <%= u.text_field :name, value: @students[i]['imie'] %>
-      </div>
-      <div class="field">
-        <%= u.label :surname %><br>
-        <%= u.text_field :surname, value: @students[i]['nazwisko'] %>
-      </div>
-      <div class="field">
-        <%= u.label :password %><br>
-        <%= u.text_field :password, value: "mamamama" %>
-      </div>
 
-      <div class="field">
-        <%= u.label :password_confirmation %><br>
-        <%= u.text_field :password_confirmation, value: "mamamama" %>
+
+      <div class="col-md-12" style="color: #af1c1c;">
+      <% unless @errors.empty? %><% @errors[i].each do |key, value| %> <%= "#{key} #{value};"%> <% end %><%end%>
       </div>
+      <div class="col-md-1"><%= u.check_box :add, include_hidden: false %></div>
+      <div class="col-md-2"><%= u.text_field :login, value: @students[i][:name][0..3]+@students[i][:surname][0..3], class: 'form-control' %></div>
+      <div class="col-md-3"><%= u.text_field :name, value: @students[i][:name], class: 'form-control' %></div>
+      <div class="col-md-3"><%= u.text_field :surname, value: @students[i][:surname], class: 'form-control' %></div>
+      <div class="col-sm-3"><%= u.select :grade_id, Grade.all.map{|g| [g.name, g.id]}, {include_blank: "Wybierz", selected: selected_grade(@students[i]) }, { class: 'form-control' }%></div>
+      <!-- <div class="col-md-3"><%= u.text_field :grade_id, value: @students[i][:grade], class: 'form-control' %></div> -->
+      <%= u.hidden_field :grade_name, value: @students[i][:grade] %>
+
+
+
     <% end %>
-    <hr>
-  <% end %>
+
+  </div>
+  <hr>
+<% end %>
+
+
+</div>
+
   <div class="actions">
     <%= submit_tag %>
   </div>
+
+
 <% end %>

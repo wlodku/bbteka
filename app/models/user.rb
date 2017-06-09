@@ -3,8 +3,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   # attr_accessor :login
+  attr_accessor :add
+
+  # attr_reader :add
+  #
+  # def add=(string_value)
+  #   @add = (string_value == '1')
+  # end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  validates :login, uniqueness: { message: ' jest już zajęty'}
+  validates_presence_of :grade_id, :name, :surname
 
 
    has_many :loans

@@ -1,4 +1,20 @@
 pl:
+  activerecord:
+    models:
+      user: Użytkownik
+    attributes:
+      user:
+        current_password: Aktualne hasło
+        email: Adres e-mail
+        grade_id: Klasa
+        name: Imię
+        surname: Nazwisko
+        password: Hasło
+        password_confirmation: Potwierdzenie hasła
+        login: Login
+        remember_me: Zapamiętaj mnie
+        reset_password_token:
+        unlock_token:
   time:
     am: am
     formats:

@@ -131,14 +131,26 @@ class UsersController < ApplicationController
     uploaded_io = params[:file]
     # require 'open-uri'
     doc = Nokogiri::HTML(open(uploaded_io).read)
-    @students = doc.xpath("//uczen")
+    @students = []
+    students_nodes = doc.xpath("//uczen")
+    students_nodes.each do |sn|
+      student = {:name => sn[:imie]}
+      student[:surname] = sn[:nazwisko]
+      place = sn.css("miejsce")
+      student[:grade] = place.attr("poziom").to_s+place.attr("symbol").to_s unless place.empty?
+      @students << student
+    end
+    # places = @students.css("miejsce")
 
+    # places.each {|p| @grades << p[:poziom]+p[:symbol]}
+    logger.info("students: #{@students}")
+    @errors = []
     @new = []
     @students.count.times do
       @new << User.new
     end
-    logger.info("students: #{@students}")
-    logger.info("studentsimie: #{@students[0]['imie']}")
+    # logger.info("students: #{@students}")
+    # logger.info("studentsimie: #{@students[0]['imie']}")
 
     # students.each do |node|
     #   User.create(id: node['id'][1..-1].to_i, name: node['name'], short: node['short'], color: node['color'])
@@ -158,18 +170,36 @@ class UsersController < ApplicationController
   end
 
   def import_create
+    users = []
+    @errors = []
+    @students = []
+    @new = []
+    logger.debug("new: #{@new}")
+
     params["users"].each do |user|
-      if user["name"] != "" || user["surname"] != ""
-        u = User.new
-        u.name = user["name"]
-        u.surname = user["surname"]
-        u.login = user["login"]
-        u.email = Faker::Internet::email+((1..100000).to_a).sample.to_s
-        u.save
-        # User.create(users_params(user))
+      u = User.new(name: user["name"], surname: user["surname"], login: user["login"], grade_id: user["grade_id"], email: Faker::Internet::email+((1..100000).to_a).sample.to_s, password: "mamamama", password_confirmation: "mamamama")
+      if u.valid?
+        users << u
+      else
+        @new << User.new
+        @students << {add: user["add"], name: user["name"], surname: user["surname"], grade: user["grade_name"]}
+        @errors << u.errors
+        logger.debug("Debuk: #{@students}")
       end
     end
-    redirect_to users_path
+    User.import users
+    if @errors.empty?
+      flash.now[:notice] = "Dodano #{users.count} użytkowników"
+      redirect_to users_path
+    else
+      flash.now[:notice] = "Dodano #{users.count} użytkowników" if users.count > 0
+      flash.now[:alert] = "Nie dodano #{@new.count} użytkowników, przejrzyj i popraw błędy:"
+
+      logger.debug("Buendy: #{@errors}")
+      logger.debug("@students[0][:imie]: #{@students[0][:imie]}")
+
+      render 'upload'
+    end
 
   end
 
@@ -181,11 +211,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {}).permit(:login, :name, :surname, :email, :teacher, :librarian, :grade_id, :role, :password, :password_confirmation, :temporary_password)
+      params.fetch(:user, {}).permit(:add, :login, :name, :surname, :email, :teacher, :librarian, :grade_id, :role, :password, :password_confirmation, :temporary_password)
     end
 
     def users_params(my_params)
-      my_params.permit(:login, :name, :surname, :email, :teacher, :librarian, :grade_id, :role, :password, :password_confirmation, :temporary_password)
+      my_params.permit(:add, :login, :name, :surname, :email, :teacher, :librarian, :grade_id, :role, :password, :password_confirmation, :temporary_password)
     end
 
 

@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# I18n.locale = :pl
+
 module Bbteka
   class Application < Rails::Application
     config.i18n.default_locale = :pl

@@ -9,6 +9,7 @@ pl:
         password: Hasło
         password_confirmation: Potwierdzenie hasła
         remember_me: Zapamiętaj mnie
+        login: Login
         reset_password_token:
         unlock_token:
     models:
@@ -118,8 +119,8 @@ pl:
       not_found: nie znaleziono
       not_locked: nie był zablokowany
       blank: "- to pole nie może być puste"
-      too_short: "- jest zbyt krótkie"
-      confirmation: "- nie jest jednakowe"
+      too_short: " jest zbyt krótkie"
+      confirmation: " nie jest jednakowe"
       not_saved:
         few: "%{resource} nie został zapisany z powodu %{count} błędów:"
         many: "%{resource} nie został zapisany z powodu %{count} błędów:"
