@@ -177,23 +177,25 @@ class UsersController < ApplicationController
     logger.debug("new: #{@new}")
 
     params["users"].each do |user|
-      u = User.new(name: user["name"], surname: user["surname"], login: user["login"], grade_id: user["grade_id"], email: Faker::Internet::email+((1..100000).to_a).sample.to_s, password: "mamamama", password_confirmation: "mamamama")
-      if u.valid?
-        users << u
-      else
-        @new << User.new
-        @students << {add: user["add"], name: user["name"], surname: user["surname"], grade: user["grade_name"]}
-        @errors << u.errors
-        logger.debug("Debuk: #{@students}")
+      if user["add"] == "1"
+        u = User.new(name: user["name"], surname: user["surname"], login: user["login"], grade_id: user["grade_id"], email: Faker::Internet::email+((1..100000).to_a).sample.to_s, password: "mamamama", password_confirmation: "mamamama")
+        if u.valid?
+          users << u
+        else
+          @new << User.new
+          @students << {add: user["add"], name: user["name"], surname: user["surname"], grade_id: user["grade_id"], login: user["login"]}          
+          @errors << u.errors
+          logger.debug("Debuk: #{@students}")
+        end
       end
     end
     User.import users
     if @errors.empty?
-      flash.now[:notice] = "Dodano #{users.count} użytkowników"
+      flash[:notice] = "Dodano #{users.count} użytkowników"
       redirect_to users_path
     else
       flash.now[:notice] = "Dodano #{users.count} użytkowników" if users.count > 0
-      flash.now[:alert] = "Nie dodano #{@new.count} użytkowników, przejrzyj i popraw błędy:"
+      flash.now[:alert] = "Nie dodano #{@new.count}/#{@new.count+users.count} użytkowników, przejrzyj i popraw błędy:"
 
       logger.debug("Buendy: #{@errors}")
       logger.debug("@students[0][:imie]: #{@students[0][:imie]}")

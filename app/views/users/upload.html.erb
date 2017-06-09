@@ -3,12 +3,14 @@
 
 <div class="container">
   <div class="form-group row">
-    <div class="col-md-3 text-center"><strong>Login</strong></div>
+
+    <div class="col-md-1 text-center"><strong>Zaznacz / odznacz wszystkich</strong><input type="checkbox" class="select-all" checked="true"></div>
+    <div class="col-md-2 text-center"><strong>Login</strong></div>
     <div class="col-md-3 text-center"><strong>Imię</strong></div>
     <div class="col-md-3 text-center"><strong>Nazwisko</strong></div>
     <div class="col-md-3 text-center"><strong>Klasa</strong></div>
   </div>
-
+  <hr>
 <% @new.each_with_index do |user, i| %>
   <div class="form-group row">
 
@@ -20,13 +22,12 @@
       <div class="col-md-12" style="color: #af1c1c;">
       <% unless @errors.empty? %><% @errors[i].each do |key, value| %> <%= "#{key} #{value};"%> <% end %><%end%>
       </div>
-      <div class="col-md-1"><%= u.check_box :add, include_hidden: false %></div>
-      <div class="col-md-2"><%= u.text_field :login, value: @students[i][:name][0..3]+@students[i][:surname][0..3], class: 'form-control' %></div>
+      <div class="col-md-1 text-center"><%= u.check_box :add, include_hidden: false, checked: true, class: 'select-user' %></div>
+      <div class="col-md-2"><%= u.text_field :login, value: @students[i][:login].nil? ? build_login(@students[i]) : @students[i][:login], class: 'form-control' %></div>
       <div class="col-md-3"><%= u.text_field :name, value: @students[i][:name], class: 'form-control' %></div>
       <div class="col-md-3"><%= u.text_field :surname, value: @students[i][:surname], class: 'form-control' %></div>
-      <div class="col-sm-3"><%= u.select :grade_id, Grade.all.map{|g| [g.name, g.id]}, {include_blank: "Wybierz", selected: selected_grade(@students[i]) }, { class: 'form-control' }%></div>
-      <!-- <div class="col-md-3"><%= u.text_field :grade_id, value: @students[i][:grade], class: 'form-control' %></div> -->
-      <%= u.hidden_field :grade_name, value: @students[i][:grade] %>
+      <div class="col-sm-3"><%= u.select :grade_id, Grade.all.map{|g| [g.name, g.id]}, {include_blank: "Wybierz", selected: @students[i][:grade_id].nil? ? selected_grade(@students[i]) : @students[i][:grade_id] }, { class: 'form-control' }%></div>
+      <!-- <% u.hidden_field :grade_name, value: @students[i][:grade] %> -->
 
 
 

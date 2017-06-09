@@ -58,3 +58,12 @@ $(document).on("click", ".show-pass", function(){
     $('.pass').attr('type', 'password');
   }
 });
+
+//New/edit user form end
+
+//Import users begin
+$(document).on("click", ".select-all", function(){
+  var checkBoxes = $(".select-user");
+  checkBoxes.prop("checked", !checkBoxes.prop("checked"));  
+});
+//Import users end
