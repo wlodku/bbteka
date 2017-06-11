@@ -63,6 +63,7 @@ gem 'prawnto', '~> 0.0.1'
 gem 'filterrific', '~> 2.1', '>= 2.1.2'
 gem 'activerecord-import', '~> 0.18.3'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8.1'
+gem 'roo', '~> 2.7', '>= 2.7.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri

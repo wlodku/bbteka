@@ -2,6 +2,8 @@ require 'barby'
 require 'barby/barcode/code_128'
 require 'barby/outputter/ascii_outputter'
 require "prawn"
+require 'roo'
+require 'csv'
 
 
 
@@ -131,42 +133,34 @@ class UsersController < ApplicationController
     uploaded_io = params[:file]
     # require 'open-uri'
     doc = Nokogiri::HTML(open(uploaded_io).read)
+    extension = File.extname(params[:file].original_filename)
+    # logger.debug("u_io #{uploaded_io.content_type}")
     @students = []
-    students_nodes = doc.xpath("//uczen")
-    students_nodes.each do |sn|
-      student = {:name => sn[:imie]}
-      student[:surname] = sn[:nazwisko]
-      place = sn.css("miejsce")
-      student[:grade] = place.attr("poziom").to_s+place.attr("symbol").to_s unless place.empty?
-      @students << student
-    end
-    # places = @students.css("miejsce")
 
-    # places.each {|p| @grades << p[:poziom]+p[:symbol]}
-    logger.info("students: #{@students}")
+    case extension
+      when ".sou"
+        students_nodes = doc.xpath("//uczen")
+        students_nodes.each do |sn|
+          student = {:name => sn[:imie]}
+          student[:surname] = sn[:nazwisko]
+          place = sn.css("miejsce")
+          student[:grade] = place.attr("poziom").to_s+place.attr("symbol").to_s unless place.empty?
+          @students << student
+        end
+      when ".csv", ".xlsx", ".xls"
+        csv = Roo::Spreadsheet.open(uploaded_io, csv_options: {encoding: Encoding::ISO_8859_2})
+        logger.debug("sheet: #{csv.column(1)}")
+      else
+        flash.now[:alert] = "Błąd odczytu pliku"
+    end
+
+
     @errors = []
     @new = []
     @students.count.times do
       @new << User.new
     end
-    # logger.info("students: #{@students}")
-    # logger.info("studentsimie: #{@students[0]['imie']}")
 
-    # students.each do |node|
-    #   User.create(id: node['id'][1..-1].to_i, name: node['name'], short: node['short'], color: node['color'])
-    # end
-
-
-    # groups = doc.xpath("//group")
-    # squads = doc.xpath("//class")
-    # classrooms = doc.xpath("//classroom")
-    # cards = doc.xpath("//card")
-    # lessons = doc.xpath("//lesson")
-    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-    #   file.write(uploaded_io.read)
-    # end
-    # head :ok, content_type: "text/html"
-    # render 'import'
   end
 
   def import_create
@@ -183,7 +177,7 @@ class UsersController < ApplicationController
           users << u
         else
           @new << User.new
-          @students << {add: user["add"], name: user["name"], surname: user["surname"], grade_id: user["grade_id"], login: user["login"]}          
+          @students << {add: user["add"], name: user["name"], surname: user["surname"], grade_id: user["grade_id"], login: user["login"]}
           @errors << u.errors
           logger.debug("Debuk: #{@students}")
         end
