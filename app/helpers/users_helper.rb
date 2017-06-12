@@ -5,6 +5,10 @@ module UsersHelper
 
 
   def build_login student
-    student[:name][0..3]+student[:surname][0..3]
+    unless(student[:name].blank? || student[:surname].blank?)
+      student[:name][0..3]+student[:surname][0..3]
+    else
+      nil
+    end
   end
 end

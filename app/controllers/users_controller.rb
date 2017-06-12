@@ -147,11 +147,25 @@ class UsersController < ApplicationController
           student[:grade] = place.attr("poziom").to_s+place.attr("symbol").to_s unless place.empty?
           @students << student
         end
-      when ".csv", ".xlsx", ".xls"
+      when ".csv"
         csv = Roo::Spreadsheet.open(uploaded_io, csv_options: {encoding: Encoding::ISO_8859_2})
-        logger.debug("sheet: #{csv.column(1)}")
+        # keys_wannabe = csv.row(1)[0].split(";")
+        keys = ["lp", "name", "surname", "login", "grade"]
+        # keys_wannabe.each do |kw|
+        #   case kw.downcase
+        #     when "lp", "lp.", "liczba porządkowa"
+        #   end
+        # end
+        students = []
+        (2..csv.last_row).each do |i|
+          values = csv.row(i)[0].split(";")
+          h = {}
+          keys.zip(values) { |a,b| h[a.to_sym] = b }
+          @students << h
+        end
+        logger.debug("students: #{students}")        
       else
-        flash.now[:alert] = "Błąd odczytu pliku"
+        raise "Błąd odczytu pliku"
     end
 
 

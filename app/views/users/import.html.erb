@@ -1,7 +1,47 @@
 <h2>Import uczniów</h2>
 
 <%= form_tag '/upload', multipart: true do %>
-  <label for="file">Dodaj plik *sou (np. z dziennika Librus) lub *xlsx (np. z dziennika MobiReg lub z innego źródła danych)</label>
-  <%= file_field_tag "file" %>
-  <%= submit_tag %>
+
+
+<label class="btn btn-default btn-file">
+    Wybierz plik <%= file_field_tag "file" %>
+</label>
+<%= submit_tag "Wyślij", class: "btn btn-primary"%>
+
+
 <% end %>
+<br><br>
+<strong>Informacja na temat obsługiwanych typów plików importu:</strong><br>
+<a class="btn btn-default" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Librus / Vulcan
+</a>
+
+<a class="btn btn-default" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+  MobiReg
+</a>
+
+<a class="btn btn-default" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+  Inny plik
+</a>
+<div class="collapse" id="collapseExample">
+  <br>
+  <div class="well">
+    <strong>Librus / Vulcan</strong><br>
+    Poproś szkolnego administratora dziennika elektronicznego o wyeksportowanie uczniów do formatu *.sou (Standard Opisu Ucznia XML). Otrzymany plik zaimportuj w powyższym okienku.
+  </div>
+</div>
+<div class="collapse" id="collapseExample2">
+  <br>
+  <div class="well">
+    <strong>MobiReg</strong><br>
+    Poproś szkolnego administratora dziennika elektronicznego o wyeksportowanie uczniów do formatu *.csv. Należy najpierw utworzyć Tabelę danych (Administrator - Tabele danych), a następnie wyeksportować ją do pliku .csv. <br>
+    Uwaga - plik powinien zawierać następujące kolumny: <strong>Lp, Imię, Nazwisko, Login, Klasa</strong>. <a href="#">Pobierz przykładowy plik .csv</a>
+  </div>
+</div>
+<div class="collapse" id="collapseExample3">
+  <br>
+  <div class="well">
+    <strong>Inny plik</strong><br>
+    W dowolnym arkuszu kalkulacyjnym (np. Microsoft Excel) przygotuj plik zawierający następujące kolumny: <strong>Lp, Imię, Nazwisko, Login, Klasa</strong>. Plik zapisz w formacie *.csv. <a href="#">Pobierz przykładowy plik .csv</a>
+  </div>
+</div>
