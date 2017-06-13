@@ -51,7 +51,7 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'pundit'
 
-gem 'searchkick', '~> 2.2'
+# gem 'searchkick', '~> 2.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'will-paginate-i18n', '~> 0.1.15'

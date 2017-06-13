@@ -3,14 +3,15 @@
 <%= form_tag '/upload', multipart: true do %>
 
 
+
 <label class="btn btn-default btn-file">
-    Wybierz plik <%= file_field_tag "file" %>
+  Wybierz plik <%= file_field_tag "file" %>
 </label>
 <%= submit_tag "Wyślij", class: "btn btn-primary"%>
 
-
 <% end %>
 <br><br>
+<div class="text-center">
 <strong>Informacja na temat obsługiwanych typów plików importu:</strong><br>
 <a class="btn btn-default" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   Librus / Vulcan
@@ -23,6 +24,7 @@
 <a class="btn btn-default" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
   Inny plik
 </a>
+</div>
 <div class="collapse" id="collapseExample">
   <br>
   <div class="well">
