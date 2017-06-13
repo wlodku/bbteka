@@ -1,0 +1,8 @@
+{
+  "name": "bbteka",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wlodku/bbteka.git",
+  "author": "wlodku <wlodku@gmail.com>",
+  "license": "MIT"
+}
