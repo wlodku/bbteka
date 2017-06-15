@@ -20,7 +20,6 @@
 //= require react_ujs
 //= require components
 //= require filterrific/filterrific-jquery
-//= require react-select
 //= require_tree .
 
 $(document).ready(function(){
