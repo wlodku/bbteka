@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -10,14 +11,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-// require turbolinks
+//= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require filterrific/filterrific-jquery
+//= require react-select
 //= require_tree .
 
 $(document).ready(function(){
@@ -25,7 +28,7 @@ $(document).ready(function(){
 
 });
 
-//New/edit user form begin
+//New edit user form begin
 
 $(document).on("click", ".generate-pass", function(){
   $('.pass').attr('type', 'text');
@@ -59,11 +62,11 @@ $(document).on("click", ".show-pass", function(){
   }
 });
 
-//New/edit user form end
+//New edit user form end
 
 //Import users begin
 $(document).on("click", ".select-all", function(){
   var checkBoxes = $(".select-user");
-  checkBoxes.prop("checked", !checkBoxes.prop("checked"));  
+  checkBoxes.prop("checked", !checkBoxes.prop("checked"));
 });
 //Import users end

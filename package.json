@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:wlodku/bbteka.git",
   "author": "wlodku <wlodku@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {    
+    "react-select": "^1.0.0-rc.5"
+  }
 }

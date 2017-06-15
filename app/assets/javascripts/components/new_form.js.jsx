@@ -1,3 +1,5 @@
+// import Select from 'react-select';
+
 var NewForm = React.createClass({
   propTypes: {
     title: React.PropTypes.string,
