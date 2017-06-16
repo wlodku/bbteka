@@ -22,3 +22,5 @@
 
 # Ignore node modules xD
 /node_modules
+/public/packs
+/node_modules
