@@ -20,6 +20,7 @@ class User < ApplicationRecord
    has_many :loans
    has_many :books, through: :loans
    belongs_to :grade, optional: true
+   belongs_to :school
 
    self.per_page = 10
 
