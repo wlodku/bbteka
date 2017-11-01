@@ -34,7 +34,7 @@ var Main = React.createClass({
     return(
       <div className="container">
         <div className="jumbotron">
-          <h1>BBteka</h1>
+          <h2>Wypożyczalnia xD</h2>
         </div>
         <div className="row">
           <div className="col-md-4">

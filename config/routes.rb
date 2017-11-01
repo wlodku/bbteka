@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # devise_for :users
@@ -16,16 +15,15 @@ Rails.application.routes.draw do
       post 'import_create' => 'users#import_create', :as => 'import_create'
     end
 
-    unauthenticated  :user do
+    unauthenticated :user do
       root to: 'dashboard#index', as: :unauthenticated_root
       get 'users/new' => 'user#new', :as => 'create_user'
     end
-end
-
+  end
 
   namespace :api do
     namespace :v1 do
-      resources :books, only: [:index, :create, :destroy, :update] do
+      resources :books, only: %i(index create destroy update) do
         get :search, on: :collection
         # get :qwe, on: :collection
       end

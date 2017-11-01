@@ -1,0 +1,9 @@
+{
+  "application.css": "/packs-test/application.css",
+  "application.js": "/packs-test/application.js",
+  "hasiok.js": "/packs-test/hasiok.js",
+  "hello_react.js": "/packs-test/hello_react.js",
+  "select.js": "/packs-test/select.js",
+  "test.css": "/packs-test/test.css",
+  "test.js": "/packs-test/test.js"
+}

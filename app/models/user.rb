@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
    scope :teachers, -> () { where teacher: true }
    scope :students, -> () { where teacher: [nil, false] }
-   scope :librarians, -> () { where libriaran: true }
+   scope :librarians, -> () { where librarian: true }
 
    scope :search_query, lambda { |query|
      return nil  if query.blank?
