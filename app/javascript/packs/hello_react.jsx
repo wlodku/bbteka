@@ -5,14 +5,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import Select from 'react-select';
+
+
+// var Select = require('react-select');
+
+
+function logChange(val) {
+  console.log('Selected: ', val);
+}
 
 
 const Hello = props => (
-  <div>A mówili idź na  {props.name}!</div>
+  <Select
+  name="form-field-name"
+  value={"one"}
+  multi={true}
+  options={props.qwe}
+  onChange={logChange}
+/>
 )
 
 Hello.defaultProps = {
-  name: 'frontend..'
+  name: 'frontend..',
+  qwe: [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' },
+    { value: 'qwe', label: 'Three' },
+    { value: 'asd', label: 'Four' }
+  ]
 }
 
 Hello.propTypes = {
@@ -20,8 +41,17 @@ Hello.propTypes = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  var options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' }
+  ];
+
+  function logChange(val) {
+    console.log('Selected: ', val);
+  }
   ReactDOM.render(
-    <Hello name="frontend..." />,
+
+    <Hello />,
     document.body.appendChild(document.createElement('div')),
   )
 })

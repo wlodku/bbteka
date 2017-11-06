@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
-  resources :loans, :books, :users, :grades
+  resources :loans, :books, :users, :grades, :schools
   # get 'dashboard/index'
   # root 'dashboard#index'
 
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
         # get :qwe, on: :collection
       end
     end
+  end
+
+  namespace :admin do
+    resources :users
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -29,14 +29,16 @@ $(document).ready(function(){
 
 //New edit user form begin
 
-$(document).on("click", ".generate-pass", function(){
+$(document).on("click", ".generate-pass", function(e){
+  e.preventDefault();
   $('.pass').attr('type', 'text');
   var randomstring = Math.random().toString(36).slice(-8);
   $('.pass').val(randomstring);
   $('.show-pass').html('Ukryj');
 });
 
-$(document).on("click", ".reset-pass", function(){
+$(document).on("click", ".reset-pass", function(e){
+  e.preventDefault();
   $('.pass').attr("disabled", false);
   var randomstring = Math.random().toString(36).slice(-8);
   $('.pass').val(randomstring);
@@ -50,7 +52,8 @@ $(document).on("keyup", ".new-pass", function(){
 
 });
 
-$(document).on("click", ".show-pass", function(){
+$(document).on("click", ".show-pass", function(e){
+  e.preventDefault();
   if( $(this).html()=='Pokaż') {
     $(this).html('Ukryj');
     $('.pass').attr('type', 'text');

@@ -8,4 +8,4 @@
 // layout file, like app/views/layouts/application.html.erb
 
 require('./test.css');
-console.log('Hello World from Webpacker');
+console.log('Jestem u Szymona');
