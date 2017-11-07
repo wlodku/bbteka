@@ -11,7 +11,7 @@ var BookTable = React.createClass({
           <tr>
             <th className="">Title</th>
             <th className="">ISBN</th>
-            <th className="">Statut</th>
+            <th className="">Statut xD</th>
             <th className=""></th>
           </tr>
         </thead>

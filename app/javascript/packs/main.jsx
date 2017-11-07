@@ -1,4 +1,7 @@
 // import Select from 'react-select';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 
 var Main = React.createClass({
   getInitialState: function() {
@@ -53,3 +56,10 @@ var Main = React.createClass({
     )
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Main />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})

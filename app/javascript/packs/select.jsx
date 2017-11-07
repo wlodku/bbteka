@@ -9,7 +9,7 @@ var options = [
 ];
 
 function logChange(val) {
-  console.log("Selected: " + val);
+  console.log("Selected: qwe " + val);
 }
 
 <Select

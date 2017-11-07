@@ -37,7 +37,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'react-rails'  #kick it
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'devise-i18n'
 gem 'devise_account_expireable'
@@ -64,7 +63,8 @@ gem 'filterrific', '~> 2.1', '>= 2.1.2'
 gem 'activerecord-import', '~> 0.18.3'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8.1'
 gem 'roo', '~> 2.7', '>= 2.7.1'
-gem 'webpacker', '~> 2.0'
+gem 'webpacker', '~> 3.0', '>= 3.0.2'
+gem 'react-rails', git: 'https://github.com/reactjs/react-rails.git', branch: 'master'
 
 group :development, :test do
   gem 'byebug', platform: :mri
