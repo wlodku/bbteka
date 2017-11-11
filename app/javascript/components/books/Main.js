@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import BookTable from "components/books/BookTable.js"
+import SearchForm from "components/books/SearchForm.js"
 
 class Main extends React.Component {
 
@@ -9,6 +10,8 @@ class Main extends React.Component {
     this.state = {
       books: []
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -19,12 +22,18 @@ class Main extends React.Component {
       });
   }
 
+  handleSearch(books) {
+    this.setState({ books: books });
+  }
 
   render() {
     return (
       <div className="container">
         <div className="jumbotron">
           <h2>Wypożyczalnia xD</h2>
+          <div className="col-md-4">
+            <SearchForm handleSearch={this.handleSearch} />
+          </div>
         </div>
 
         <div className="row">

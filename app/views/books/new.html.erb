@@ -2,8 +2,6 @@
 
 <h1>Dodaj pozycję do katalogu</h1>
 
-<%= javascript_pack_tag 'hello_react' %>
-
-<%= render 'form', book: @book %>
+<%= react_component("books/NewBook") %>
 
 <%= link_to 'Back', books_path %>

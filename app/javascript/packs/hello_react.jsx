@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 
 // var Select = require('react-select');
