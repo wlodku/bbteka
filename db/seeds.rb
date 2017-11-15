@@ -6,11 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-321.times do
-  book = Book.new
-  book.title = Faker::Book.title
-  book.isbn = Faker::Crypto.md5
-  book.save
+# 321.times do
+#   book = Book.new
+#   book.title = Faker::Book.title
+#   book.isbn = Faker::Crypto.md5
+#   book.save
+# end
+
+50.times do
+  author = Author.new
+  author.name = Faker::Name.first_name
+  author.surname = Faker::Name.last_name
+  author.save
 end
 # AdminUser.create!(email: 'wlodku@post.pl', login: 'admin', password: 'mamamama', password_confirmation: 'mamamama')
 # School.create!(name: 'Centrum Kształcenia Zawodowego i Ustawicznego w Jaworznie', short: 'CKZiU Jaworzno')

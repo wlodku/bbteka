@@ -24,8 +24,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :books, only: %i(index create destroy update) do
-        get :search, on: :collection
-        # get :qwe, on: :collection
+        get :search, on: :collection        
+      end
+      get "authors/search/(:query)" => "authors#search"
+      resources :authors, only: %i(index create destroy update) do
+        # get :search, on: :collection
       end
     end
   end

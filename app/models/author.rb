@@ -3,6 +3,13 @@ class Author < ApplicationRecord
   has_many :books, through: :author_books
   accepts_nested_attributes_for :author_books
 
+
+
+  # def full_name
+  #   [surname, name].compact.join(' ')
+  # end
+
+  scope :find_by_fullname, -> (query) { where('LOWER(name) LIKE ? OR LOWER(surname) LIKE ?', "%#{query}%", "%#{query}%") }
   # filterrific(
   #   default_filter_params: { sorted_by: 'created_at_desc' },
   #   available_filters: [
