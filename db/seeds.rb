@@ -13,12 +13,29 @@
 #   book.save
 # end
 
-50.times do
-  author = Author.new
-  author.name = Faker::Name.first_name
-  author.surname = Faker::Name.last_name
-  author.save
+authors = []
+10000.times do
+  authors << Author.new(name: Faker::Name.first_name, surname: Faker::Name.last_name)
 end
+Author.import authors
+
+
+# grades = []
+# grades << Grade.new(name: 'IIa TE');
+# grades << Grade.new(name: 'IIIac TE');
+# grades << Grade.new(name: 'IIIb T6');
+# grades << Grade.new(name: 'Ia T6');
+# grades << Grade.new(name: 'Ia T5');
+# grades << Grade.new(name: 'IIa T5');
+# grades << Grade.new(name: 'IIb T5');
+# grades << Grade.new(name: 'IIIa T5');
+# grades << Grade.new(name: 'IVa T5');
+# grades << Grade.new(name: 'IVb T5');
+# grades << Grade.new(name: 'Nauczyciel');
+# Grade.import grades
+
+
+
 # AdminUser.create!(email: 'wlodku@post.pl', login: 'admin', password: 'mamamama', password_confirmation: 'mamamama')
 # School.create!(name: 'Centrum Kształcenia Zawodowego i Ustawicznego w Jaworznie', short: 'CKZiU Jaworzno')
 #

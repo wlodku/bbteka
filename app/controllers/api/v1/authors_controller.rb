@@ -6,6 +6,7 @@ class Api::V1::AuthorsController < ApplicationController
   def search
     query = params[:query]
     authors = Author.find_by_fullname(query).select("(name || ' ' || surname) as label, id::text as value")
+    # authors = Author.last
     render json: authors
   end
 

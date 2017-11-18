@@ -12,7 +12,6 @@ class NewBook extends React.Component {
     this.handleSearchBook = this.handleSearchBook.bind(this);
   }
   componentDidMount() {
-
   }
 
   handleSearchAuthor() {
