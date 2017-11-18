@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Select from 'react-select'
-import fetch from 'isomorphic-fetch'
+// import fetch from 'isomorphic-fetch'
 
 import '!style-loader!css-loader!react-select/dist/react-select.css';
 
@@ -13,7 +13,7 @@ class SelectAuthor extends React.Component {
     };
 
     this.handleSelectChange = this.handleSelectChange.bind(this);
-    // this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleNewOption = this.handleNewOption.bind(this);
     this.getOptions = this.getOptions.bind(this);
   }
 
@@ -26,6 +26,10 @@ class SelectAuthor extends React.Component {
     console.log(val);
   }
 
+  handleNewOption(val) {
+    this.setState({ value: [...this.state.value, val] })
+    console.log(val);
+  }
 
   getOptions(input) {
 		if (input.length < 3) {
@@ -39,7 +43,7 @@ class SelectAuthor extends React.Component {
 		});
 	}
 
-  render() {
+  render(props) {
 
     return (
 
@@ -48,7 +52,7 @@ class SelectAuthor extends React.Component {
           Autor/Autorzy
         </div>
           <div className="col-md-10">
-              <Select.Async
+              <Select.AsyncCreatable
                 name="selectAuthors"
                 multi={true}
                 value={this.state.value}
@@ -58,11 +62,13 @@ class SelectAuthor extends React.Component {
                 onSelectResetsInput={false}
                 backspaceRemoves={false}
                 ignoreCase={true}
-                isOptionUnique={true}
+                // isOptionUnique={true}
                 removeSelected={true}
-                placeholder="Zacznij wpisywać nazwisko/imię autora"
+                onNewOptionClick={this.handleNewOption}
+                promptTextCreator={(label) => `Nie znalazłeś autora? Kliknij aby dodać nowego: ${label} `}
+                searchPromptText={"Zacznij wpisywać nazwisko/imię autora"}
+                placeholder={"Dodaj autora"}
                />
-
           </div>
       </div>
     )
